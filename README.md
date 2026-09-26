@@ -24,7 +24,7 @@ later in the module for the harder, more realistic surface.
 Each bug is flagged in source with a `# BUG-NN:` comment. To enumerate:
 
 ```bash
-grep -rn "BUG-0" apps/galway-bank/app/
+grep -rn "BUG-0" app/
 ```
 
 The full lecturer's answer key lives in [`docs/bugs.md`](docs/bugs.md). The

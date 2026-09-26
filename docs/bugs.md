@@ -11,7 +11,7 @@ Each bug is flagged in source by a `# BUG-NN:` (or `{# BUG-NN: #}` for Jinja)
 marker. To enumerate every marker:
 
 ```bash
-grep -rn "BUG-0" apps/galway-bank/app/
+grep -rn "BUG-0" app/
 ```
 
 ---

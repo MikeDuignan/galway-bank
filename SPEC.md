@@ -168,7 +168,7 @@ The 101 stays small on purpose. Adding "just one more bug" turns it into Juice S
 ## 8. Layout
 
 ```
-apps/galway-bank/
+galway-bank/
 ├── README.md                    Quick start + demo accounts
 ├── SPEC.md                      You are here
 ├── pyproject.toml               Flask 3.0, python-dotenv, pytest

@@ -28,7 +28,8 @@ line in a sitting.
 ## Setup (5 minutes)
 
 ```bash
-cd Cybersecurity_Book/apps/galway-bank
+git clone https://github.com/MikeDuignan/galway-bank.git
+cd galway-bank
 cp .env.example .env
 docker compose up -d --build
 
