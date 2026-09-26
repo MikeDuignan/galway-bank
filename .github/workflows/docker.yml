@@ -27,7 +27,7 @@ jobs:
           docker build -t galway-bank:test .
           docker run -d --name galway-bank-test -p 127.0.0.1:5001:5000 galway-bank:test
           trap 'docker logs galway-bank-test; docker rm -f galway-bank-test' EXIT
-          curl --retry 20 --retry-connrefused --retry-delay 2 --fail http://127.0.0.1:5001/health
+          curl --retry 20 --retry-all-errors --retry-delay 2 --max-time 5 --retry-max-time 60 --fail http://127.0.0.1:5001/health
           curl --fail http://127.0.0.1:5001/login | grep -q 'Sign in'
 
   publish:
