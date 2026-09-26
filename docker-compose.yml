@@ -1,0 +1,21 @@
+# Galway Mutual — compose stack.
+#
+# A single service. SQLite lives in a named volume so data survives `down`
+# but `down -v` wipes it for a fresh lab session.
+
+services:
+  app:
+    image: galway-bank:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      GALWAY_BANK_DB: /var/lib/galway-bank/bank.db
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-dev-flask-secret-change-me}
+    ports:
+      - "127.0.0.1:5001:5000"
+    volumes:
+      - bankdata:/var/lib/galway-bank
+
+volumes:
+  bankdata:

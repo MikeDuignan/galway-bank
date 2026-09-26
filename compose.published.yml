@@ -1,0 +1,15 @@
+# Run the published image without downloading or building the source.
+# docker compose -f compose.published.yml up -d
+name: galway-bank
+services:
+  app:
+    image: ghcr.io/mikeduignan/galway-bank:latest
+    ports:
+      - "127.0.0.1:5001:5000"
+    environment:
+      GALWAY_BANK_DB: /var/lib/galway-bank/bank.db
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY:-dev-flask-secret-change-me}
+    volumes:
+      - bankdata:/var/lib/galway-bank
+volumes:
+  bankdata:

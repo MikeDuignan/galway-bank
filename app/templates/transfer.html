@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Transfer — Galway Mutual{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('dashboard') }}">&larr; Dashboard</a>
+
+<div class="card">
+    <h1>Make a transfer</h1>
+    <p class="muted">Move money between Galway Mutual accounts. Transfers complete instantly.</p>
+
+    {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+
+    <form method="post" action="{{ url_for('transfer') }}" class="stack">
+        <label>
+            <span>From account</span>
+            <select name="from_account_id" required>
+                {% for a in my_accounts %}
+                    <option value="{{ a.id }}">
+                        {{ a.account_type | capitalize }}
+                        — {{ a.account_number }}
+                        — €{{ '%.2f' | format(a.balance_cents / 100) }}
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            <span>To account number</span>
+            <input type="text" name="to_account_number" placeholder="GW-12345678" required>
+        </label>
+        <label>
+            <span>Amount (€)</span>
+            <input type="text" name="amount" inputmode="decimal" placeholder="0.00" required>
+        </label>
+        <label>
+            <span>Memo</span>
+            <input type="text" name="memo" maxlength="200" placeholder="What's it for?">
+        </label>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+{% endblock %}

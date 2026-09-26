@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "galway-bank"
+version = "0.1.0"
+description = "Galway Mutual — a deliberately-vulnerable retail-banking demo for the COMP09031 Cybersecurity & Secure Programming module at ATU Galway. Five obvious bugs, one per screen."
+authors = [{name = "Mike Duignan", email = "mike.duignan@atu.ie"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "Flask==3.0.3",
+    "python-dotenv==1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.4",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+filterwarnings = ["ignore::DeprecationWarning"]

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Sign in — Galway Mutual{% endblock %}
+
+{% block content %}
+<div class="login-splash">
+    <img src="{{ url_for('static', filename='logo-wordmark.png') }}"
+         alt="Galway Mutual" class="wordmark">
+</div>
+
+<div class="card card-narrow">
+    <h1>Sign in to your account</h1>
+    <p class="muted">Online banking for Galway Mutual customers.</p>
+
+    {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+
+    <form method="post" action="{{ url_for('login') }}" class="stack">
+        <label>
+            <span>Email</span>
+            <input type="text" name="email" autocomplete="username" autofocus required>
+        </label>
+        <label>
+            <span>Password</span>
+            <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+
+    <p class="muted small">
+        Trouble signing in? Call our branch on 091 555 0100 during banking hours.
+    </p>
+</div>
+{% endblock %}

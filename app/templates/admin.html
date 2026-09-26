@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Staff — Galway Mutual{% endblock %}
+
+{% block content %}
+<h1>Staff console</h1>
+<p class="muted">All customer accounts on the platform.</p>
+
+<table class="txns">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Account number</th>
+            <th>Type</th>
+            <th class="num">Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in rows %}
+        <tr>
+            <td>{{ r.full_name }}</td>
+            <td class="mono">{{ r.email }}</td>
+            <td>{{ r.role }}</td>
+            <td class="mono">{{ r.account_number or '—' }}</td>
+            <td>{{ (r.account_type or '') | capitalize }}</td>
+            <td class="num">
+                {% if r.balance_cents is not none %}
+                    €{{ '%.2f' | format(r.balance_cents / 100) }}
+                {% else %}—{% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Galway Mutual{% endblock %}
+
+{% block content %}
+<h1>Welcome back, {{ user.full_name }}</h1>
+<p class="muted">Your accounts as of today.</p>
+
+<div class="cards">
+{% for a in accounts %}
+    <a class="account-card" href="{{ url_for('account_view', account_id=a.id) }}">
+        <span class="account-type">{{ a.account_type | capitalize }}</span>
+        <span class="account-number">{{ a.account_number }}</span>
+        <span class="account-balance">€{{ '%.2f' | format(a.balance_cents / 100) }}</span>
+    </a>
+{% else %}
+    <p>You have no accounts on file. Please contact the branch.</p>
+{% endfor %}
+</div>
+
+<div class="actions">
+    <a class="btn btn-primary" href="{{ url_for('transfer') }}">Make a transfer</a>
+</div>
+{% endblock %}

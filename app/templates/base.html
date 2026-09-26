@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Galway Mutual{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">
+        <img class="brand-mark" src="{{ url_for('static', filename='logo.png') }}"
+             alt="" width="40" height="40">
+        <span class="brand-text">
+            <span class="brand-name">Galway Mutual</span>
+            <span class="brand-tag">Banking for the West of Ireland</span>
+        </span>
+    </a>
+
+    <nav class="nav">
+        {% if user %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('transfer') }}">Transfer</a>
+            {% if user.role == 'staff' %}
+                <a href="{{ url_for('admin') }}">Admin</a>
+            {% endif %}
+            <span class="who">{{ user.full_name }}</span>
+            <a href="{{ url_for('logout') }}" class="btn btn-ghost">Sign out</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn">Sign in</a>
+        {% endif %}
+    </nav>
+</header>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash">
+            {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>&copy; Galway Mutual plc. Registered in Ireland. A teaching artefact for COMP09031 — not a real bank.</p>
+</footer>
+</body>
+</html>

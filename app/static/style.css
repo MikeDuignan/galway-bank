@@ -1,0 +1,125 @@
+/* Galway Mutual — brand stylesheet.
+   Navy #0A2540, gold #C9A227, cream #FAF7F2. Clean serif headings, system sans body. */
+
+:root {
+    --navy: #0A2540;
+    --navy-2: #15355c;
+    --gold: #C9A227;
+    --gold-2: #b08a18;
+    --cream: #FAF7F2;
+    --ink: #1a1a1a;
+    --muted: #5e6b7a;
+    --line: #d8d3c7;
+    --danger: #b3261e;
+    --in: #1f7a3d;
+    --out: #b3261e;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--navy); margin-top: 0; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.25rem; margin-top: 2rem; }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ----- Top bar ----- */
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--navy); color: var(--cream);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 3px solid var(--gold);
+}
+.brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--cream); }
+.brand-mark { display: block; width: 40px; height: 40px; object-fit: contain; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name { font-family: Georgia, serif; font-size: 1.25rem; letter-spacing: 0.02em; }
+.brand-tag { font-size: 0.75rem; color: var(--gold); }
+
+.nav { display: flex; align-items: center; gap: 1rem; }
+.nav a { color: var(--cream); text-decoration: none; padding: 0.25rem 0.5rem; }
+.nav a:hover { color: var(--gold); }
+.nav .who { color: var(--gold); margin-left: 0.5rem; }
+
+/* ----- Buttons ----- */
+.btn {
+    display: inline-block; padding: 0.6rem 1.1rem;
+    font-size: 0.95rem; font-weight: 600;
+    border: 1px solid var(--navy); background: var(--cream); color: var(--navy);
+    border-radius: 4px; text-decoration: none; cursor: pointer;
+}
+.btn:hover { background: var(--navy); color: var(--cream); }
+.btn-primary { background: var(--gold); border-color: var(--gold-2); color: var(--navy); }
+.btn-primary:hover { background: var(--gold-2); color: var(--navy); }
+.btn-ghost { background: transparent; color: var(--cream); border-color: var(--cream); }
+.btn-ghost:hover { background: var(--cream); color: var(--navy); }
+
+/* ----- Layout ----- */
+.container { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; }
+.card {
+    background: white; border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.card-narrow { max-width: 420px; margin: 1.5rem auto; }
+
+.login-splash { display: flex; justify-content: center; margin: 2rem auto 0; }
+.login-splash .wordmark { max-width: 480px; width: 100%; height: auto; }
+.stack > * + * { margin-top: 1rem; }
+.stack label { display: flex; flex-direction: column; gap: 0.25rem; }
+.stack input, .stack select {
+    font: inherit;
+    padding: 0.6rem 0.75rem; border: 1px solid var(--line); border-radius: 4px;
+    background: white;
+}
+.stack input:focus, .stack select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+
+.flash {
+    background: #ecf7ee; border-left: 4px solid var(--in);
+    padding: 0.75rem 1.5rem; margin: 0; max-width: 960px; margin: 0 auto;
+}
+.flash p { margin: 0.25rem 0; }
+
+.alert { padding: 0.75rem 1rem; border-radius: 4px; margin: 0.5rem 0 0; }
+.alert-error { background: #fdecec; color: var(--danger); border-left: 4px solid var(--danger); }
+
+.actions { margin-top: 1.5rem; }
+
+.back { display: inline-block; margin-bottom: 1rem; color: var(--navy); text-decoration: none; }
+.back:hover { color: var(--gold-2); }
+
+/* ----- Account cards ----- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.account-card {
+    display: flex; flex-direction: column; gap: 0.25rem;
+    background: white; padding: 1.25rem; border: 1px solid var(--line); border-radius: 6px;
+    text-decoration: none; color: var(--ink);
+    border-left: 4px solid var(--gold);
+}
+.account-card:hover { border-color: var(--navy); border-left-color: var(--gold); }
+.account-type { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.account-number { font-family: ui-monospace, monospace; color: var(--navy); font-size: 0.95rem; }
+.account-balance { font-family: Georgia, serif; font-size: 1.5rem; color: var(--navy); margin-top: 0.5rem; }
+
+.account-header { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.account-number-large { font-family: ui-monospace, monospace; font-size: 1rem; color: var(--navy); margin: 0.25rem 0; }
+.account-balance-large { font-family: Georgia, serif; font-size: 2.25rem; color: var(--navy); margin: 0.75rem 0 0; }
+
+/* ----- Transactions table ----- */
+.txns { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.txns th, .txns td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--line); }
+.txns th { background: #f3efe6; color: var(--navy); font-weight: 600; }
+.txns tr:last-child td { border-bottom: none; }
+.amount-in { color: var(--in); font-weight: 600; }
+.amount-out { color: var(--out); font-weight: 600; }
+
+/* ----- Footer ----- */
+.footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 2rem 1.5rem 3rem; }

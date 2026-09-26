@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Account {{ account.account_number }} — Galway Mutual{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('dashboard') }}">&larr; Dashboard</a>
+
+<header class="account-header">
+    <h1>{{ account.account_type | capitalize }} account</h1>
+    <p class="account-number-large">{{ account.account_number }}</p>
+    <p class="muted">Held by {{ owner.full_name }} ({{ owner.email }})</p>
+    <p class="account-balance-large">€{{ '%.2f' | format(account.balance_cents / 100) }}</p>
+</header>
+
+<h2>Recent transactions</h2>
+<table class="txns">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Counterparty</th>
+            <th class="num">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for tx in transactions %}
+        {% set outgoing = tx.from_account_id == account.id %}
+        <tr class="{{ 'out' if outgoing else 'in' }}">
+            <td>{{ tx.created_at }}</td>
+            {# BUG-03: stored XSS sink. ``tx.memo`` is rendered through Jinja's
+               |safe filter, which suppresses auto-escaping. The memo is taken
+               verbatim from the transfer form (POST /transfer) with no
+               sanitisation. A memo of <script>alert(1)</script> fires for every
+               viewer of either side of the transfer.
+
+               Fix: drop the |safe filter. Jinja's default auto-escape handles it. #}
+            <td>{{ tx.memo | safe }}</td>
+            <td class="mono">
+                {% if outgoing %}&rarr; {{ tx.to_number }}
+                {% else %}&larr; {{ tx.from_number }}
+                {% endif %}
+            </td>
+            <td class="num {{ 'amount-out' if outgoing else 'amount-in' }}">
+                {{ '-' if outgoing else '+' }}€{{ '%.2f' | format(tx.amount_cents / 100) }}
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="4" class="muted">No transactions on this account yet.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
