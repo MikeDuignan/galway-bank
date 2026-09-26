@@ -37,7 +37,6 @@ h2 { font-size: 1.25rem; margin-top: 2rem; }
     display: flex; align-items: center; justify-content: space-between;
     background: var(--navy); color: var(--cream);
     padding: 0.75rem 1.5rem;
-    border-bottom: 3px solid var(--gold);
 }
 .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--cream); }
 .brand-mark { display: block; width: 40px; height: 40px; object-fit: contain; }
@@ -83,13 +82,13 @@ h2 { font-size: 1.25rem; margin-top: 2rem; }
 .stack input:focus, .stack select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 
 .flash {
-    background: #ecf7ee; border-left: 4px solid var(--in);
+    background: #ecf7ee; border: 1px solid #c7ddcb; border-radius: 4px;
     padding: 0.75rem 1.5rem; margin: 0; max-width: 960px; margin: 0 auto;
 }
 .flash p { margin: 0.25rem 0; }
 
 .alert { padding: 0.75rem 1rem; border-radius: 4px; margin: 0.5rem 0 0; }
-.alert-error { background: #fdecec; color: var(--danger); border-left: 4px solid var(--danger); }
+.alert-error { background: #fdecec; color: var(--danger); border: 1px solid #e5c4c4; }
 
 .actions { margin-top: 1.5rem; }
 
@@ -102,9 +101,8 @@ h2 { font-size: 1.25rem; margin-top: 2rem; }
     display: flex; flex-direction: column; gap: 0.25rem;
     background: white; padding: 1.25rem; border: 1px solid var(--line); border-radius: 6px;
     text-decoration: none; color: var(--ink);
-    border-left: 4px solid var(--gold);
 }
-.account-card:hover { border-color: var(--navy); border-left-color: var(--gold); }
+.account-card:hover { border-color: var(--navy); }
 .account-type { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 .account-number { font-family: ui-monospace, monospace; color: var(--navy); font-size: 0.95rem; }
 .account-balance { font-family: Georgia, serif; font-size: 1.5rem; color: var(--navy); margin-top: 0.5rem; }

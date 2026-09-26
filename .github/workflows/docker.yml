@@ -34,6 +34,9 @@ jobs:
     needs: test
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    concurrency:
+      group: publish-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
       contents: read
       packages: write
